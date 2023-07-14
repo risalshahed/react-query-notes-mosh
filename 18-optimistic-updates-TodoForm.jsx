@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRef } from 'react';
-// 15 TodoForm component
+
 const TodoForm = () => {
   const queryClient = useQueryClient();
 
@@ -13,13 +13,15 @@ const TodoForm = () => {
         .post('https://jsonplaceholder.typicode.com/todos', todo)
         .then(res => res.data),
 
-    // 18.1 onMutate is called before our mutation is executed
-    // 18.1.1 remember, "variables" in react query refers to the input data we send to the server
+    // 18 optimistic update is for better UX, amra newTodo display te FAST anbo (backend a data pathanr agei!) BUT eita setup kora a little bit more complex! BUT amra several steps a korte pari, let's be calm & crawl steadily
+
+    // 18.1 add a new callback "onMutate"; onMutate function is called "before our mutation is executed"
+    // 18.1.1 remember, "variables" in react query refers to the input data we send to the backend
     onMutate: newTodo => {
-      // 18.3.2 create a context (which returns the previousTodos before we update the cache)
+      // 18.3.2 create a context (which returns the "previousTodos" before we update the cache)
       const previousTodos = queryClient.getQueryData(['todos']);
 
-      // 18.2 In this function, we should update the query cache right away! In stead of waiting for a response to update the cache & clear the input (in the "onSuccess" function), we do everything in "onMutate"
+      // ****** 18.2 In this function, we should update the query cache "right away"! In stead of waiting for a response to update the cache & clear the input (in the "onSuccess" function), we do everything in "onMutate"
       queryClient.setQueryData( ['todos'], todos => [ newTodo, ...(todos) ] )
       // 18.2.1 BUT ei "newTodo" er kono ID nai, tai amra jodi newTodo add kri, taile eita backend theke pawa data er sathe milaya dekhbo "onSuccess" method a
 
@@ -35,8 +37,8 @@ const TodoForm = () => {
       // 18.2.2 update todos with "setQueryData", "onMutate" theke j amra "newTodo" paai, seta eikhane "savedTodo" hishebe add krbo, ei method a kmne pabo? 2nd parameter 'newTodo' diye
       queryClient.setQueryData(['todos'], todos => todos?.map(todo => todo === newTodo ? savedTodo : todo))
     },
-    // 18.3 if the request fails
 
+    // 18.3 if the request fails
     // ******* 18.3.1 context is an object we create to pass data in between our callbacks, here we need a context object that includes the previous todos before we updated the cache
     // 18.4 access the context object here
     onError: ( error, newTodo, context ) => {

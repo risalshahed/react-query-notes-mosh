@@ -14,7 +14,7 @@ const queryClient = new QueryClient({
     queries: {
       retry: 3,
       cacheTime: 5*1000*60,   // 5 minutes
-      // 10 sec freshe thakbe, erpor stale hye jabe
+      // 10 sec fresh thakbe, erpor stale hye jabe
       staleTime: 10*1000,      // 10 seconds
       // 9.3 refetch false kri
       refetchOnWindowFocus: false,  // by default -> true
@@ -31,7 +31,7 @@ const queryClient = new QueryClient({
 - When the network is reconnected
 - When a component is mounted
 - When the window is refocused
-*** wait, window refocused??? yes, amra jodi browser oi tab theke onno kothao emn ki same browser er onno tab a giyeo oi tab a return kri, data refetch hye abr stale theke FRESH hye jabe! we can change this settings, go to 9.3
+*** wait, window refocused??? yes, amra jodi browser theke onno kothao emn ki same browser er onno tab a giyeo oi tab a return kri, data refetch hye abr stale theke FRESH hye jabe! we can change this settings, go to 9.3
 */
 
 ReactDOM.createRoot(document.getElementById('root')).render(

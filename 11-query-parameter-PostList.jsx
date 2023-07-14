@@ -6,7 +6,7 @@ const PostList = () => {
   // 11.2 filter krte state nissi userId er
   const [userId, setUserId] = useState();
 
-  // 11.3 *****FILTER to filter, usePosts er parameter thakte hbe, jei parameter diye filter kra hbe, so include "userId" as argument, also include the parameter inside the "usePosts" hook file
+  // 11.3 *****FILTER: to filter, "usePosts er 'parameter' thakte hbe", jei parameter diye filter kra hbe, so include "userId" as argument, also include the parameter inside the "usePosts" hook file
   const { data: posts, error, isLoading } = usePosts(userId);
 
   if(error) return <p>{error.message}</p>;

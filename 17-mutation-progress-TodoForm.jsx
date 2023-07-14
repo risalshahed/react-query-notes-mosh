@@ -18,7 +18,7 @@ const TodoForm = () => {
       
       queryClient.setQueryData( ['todos'], todos => [ savedTodo, ...todos ] )
 
-      // 17.2 clear the input field after adding a todo
+      // **** 17.2 clear the input field after adding a todo
       if(inputRef.current) inputRef.current.value = '';
     }
   });

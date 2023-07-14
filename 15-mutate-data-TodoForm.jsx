@@ -24,9 +24,9 @@ const TodoForm = () => {
       // 15.8
       // ----------------------- UPDATE the "todo_list" in UI -----------------------
       // 15.8.1 1st Approach: Invalidate the cache
-      // amra react query k jodi bole cache a ja ase ta invalid taile react-query backend theke shob data refetch kore dbe, unfortunately it doesn't work with the json placeholder as API is fake, still ekta way te kri just to demonstrate
+      // amra react query k jodi boli cache a ja ase ta invalid kro taile react-query backend theke shob data refetch kore dbe, unfortunately it doesn't work with the json placeholder as API is fake, still ekta way te kri just to demonstrate
 
-      // 15.8.1.2
+      // 15.8.1.1
       /* queryClient.invalidateQueries({
         queryKey: ['todos']   // doesn't work with json placeholder
       }) */
@@ -43,15 +43,15 @@ const TodoForm = () => {
   // 15.3 declare "handleSubmit" function
   const handleSubmit = e => {
     e.preventDefault();
-    // 15.5 all mutation object has a 'mutate' method for mutating data, ***** jokhn amra ei 'mutate' method ta call krbo, react-query will send our data to the backend using "mutationFn"
     // check the input value in console
     // console.log(inputRef.current.value);
-
-    // 15.6 jodi user "input" a kono value dey, tokhn e amra "todo" add krbo
+    
+    // 15.5 jodi user "input" a kono value dey, tokhn e amra "todo" add krbo
     if(inputRef.current && inputRef.current.value) {
+      // 15.6 all mutation object has a 'mutate' method for mutating data, ***** jokhn amra ei 'mutate' method ta call krbo, react-query will send our data to the backend using "mutationFn"
       addTodo.mutate({
-        // 15.5.1 mutationFn a pathano "todo" object a eikhane pass krbo
-        // 15.5.2 we pass a few properties as well
+        // 15.6.1 mutationFn a pathano "todo" object a eikhane pass krbo
+        // 15.6.2 we pass a few properties as well
         id: 0,  // currently we don't have any id
         title: inputRef.current.value,
         completed: false,

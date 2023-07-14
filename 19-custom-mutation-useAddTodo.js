@@ -39,12 +39,6 @@ const useAddTodo = onAdd => {
       queryClient.setQueryData( CACHE_KEY_TODOS, context.previousTodos )
     }
   });
-
-  // return (
-  //   <div>
-      
-  //   </div>
-  // );
 };
 
 export default useAddTodo;

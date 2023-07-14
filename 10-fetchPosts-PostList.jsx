@@ -7,7 +7,6 @@ const PostList = () => {
   if(error) return <p>{error.message}</p>;
   if(isLoading) return <p>Loading...</p>;
 
-
   return (
     <>
       <h2>Posts</h2>

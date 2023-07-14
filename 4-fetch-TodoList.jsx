@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
 
 // npm i axios
 
@@ -60,10 +59,10 @@ const TodoList = () => {
       }
       {/* 4.4. ********* react query diye data fetch korlm, luv ki hoilo????? */}
       {/*
-        the benefits are,
-          1. auto retires even if the server fails,
-          2. auto refetch after some time
-          3. caching, after first fetch data will be stored in the cache, so next we need the data, we can have it directly from the cache without going to the server
+        the benefits are:
+        1. auto retires even if the server fails,
+        2. auto refetch after some time
+        3. V.V.I. caching, after first fetch data will be stored in the cache, so next we need the data, we can have it directly from the cache without going to the server
       */}
     </ul>
   );
